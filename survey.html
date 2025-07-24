@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TripUnity Feedback Survey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8f9fa, #e8f0fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      background: #1d72b8;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #145a91;
+    }
+
+    .language-selector {
+      text-align: center;
+    }
+
+    .language-selector button {
+      margin: 0.5rem;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .fade {
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="languageScreen" class="fade">
+      <h2>Choose Language<br/>भाषा चुनें<br/>Bhasha Chunein</h2>
+      <div class="language-selector">
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('hi')">हिंदी</button>
+        <button onclick="setLanguage('hinglish')">Hinglish</button>
+      </div>
+    </div>
+
+    <form id="surveyForm" class="hidden fade">
+      <h2 id="formTitle">TripUnity Survey</h2>
+
+      <div class="form-group">
+        <label id="q1Label"></label>
+        <select name="q1" required>
+          <option value="">Select</option>
+          <option value="Yes">Yes / हां / Haan</option>
+          <option value="No">No / नहीं / Nahi</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="q2Label"></label>
+        <select name="q2" required>
+          <option value="">Select</option>
+          <option value="Planning with friends is chaotic">Planning with friends is chaotic / दोस्तों के साथ प्लानिंग मुश्किल है</option>
+          <option value="Hard to track payments and bookings">Hard to track payments / बुकिंग और खर्चा समझना मुश्किल</option>
+          <option value="Forget important things while planning">We forget things / चीज़ें भूल जाते हैं प्लानिंग में</option>
+          <option value="Other">Other / अन्य</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="q3Label"></label>
+        <textarea name="q3" rows="4" placeholder="Your opinion here..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label id="emailLabel">(Optional) Your Email / ईमेल</label>
+        <input type="email" name="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label id="nameLabel">(Optional) Your Name / नाम</label>
+        <input type="text" name="name" placeholder="Your Name / नाम" />
+      </div>
+
+      <button type="submit" id="submitBtn">Submit / सबमिट करें</button>
+    </form>
+  </div>
+
+  <script>
+    const langTexts = {
+      en: {
+        title: "TripUnity Survey",
+        q1: "Do you often face difficulties while planning group trips?",
+        q2: "What is the biggest problem you face during group planning?",
+        q3: "Any additional suggestion or idea you want to share?"
+      },
+      hi: {
+        title: "TripUnity सर्वे",
+        q1: "क्या आपको ग्रुप ट्रिप प्लान करने में दिक्कत होती है?",
+        q2: "ग्रुप प्लानिंग के दौरान आपकी सबसे बड़ी समस्या क्या होती है?",
+        q3: "कोई और सुझाव या विचार जो आप साझा करना चाहते हैं?"
+      },
+      hinglish: {
+        title: "TripUnity Survey",
+        q1: "Kya aapko group trip plan karne me dikkat hoti hai?",
+        q2: "Group planning me sabse badi dikkat kya lagti hai?",
+        q3: "Koi extra suggestion ya idea jo aap batana chahein?"
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = langTexts[lang];
+      document.getElementById("formTitle").textContent = t.title;
+      document.getElementById("q1Label").textContent = t.q1;
+      document.getElementById("q2Label").textContent = t.q2;
+      document.getElementById("q3Label").textContent = t.q3;
+
+      document.getElementById("languageScreen").classList.add("hidden");
+      document.getElementById("surveyForm").classList.remove("hidden");
+    }
+
+    document.getElementById("surveyForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      alert("Thanks for your feedback!");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
