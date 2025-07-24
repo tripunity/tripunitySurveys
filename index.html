@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TripUnity Survey</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Fredoka', sans-serif;
@@ -12,29 +13,34 @@
       padding: 20px;
       margin: 0;
     }
+
     .survey-container {
       max-width: 750px;
       background: white;
       border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       padding: 30px;
       margin: auto;
     }
+
     h1 {
       text-align: center;
       font-size: 26px;
     }
+
     .icon {
       font-size: 48px;
       text-align: center;
       color: #00bfa5;
       margin-bottom: 10px;
     }
+
     label {
       font-weight: 600;
       display: block;
       margin-top: 20px;
     }
+
     input[type="text"],
     input[type="email"],
     select,
@@ -46,12 +52,15 @@
       border-radius: 10px;
       font-size: 16px;
     }
+
     .options {
       margin-top: 10px;
     }
+
     .options input[type="radio"] {
       display: none;
     }
+
     .options label {
       display: block;
       background: #f0f4f8;
@@ -61,10 +70,12 @@
       cursor: pointer;
       border: 2px solid transparent;
     }
-    .options input[type="radio"]:checked + label {
+
+    .options input[type="radio"]:checked+label {
       background: #d0f0e9;
       border-color: #00bfa5;
     }
+
     button {
       margin-top: 30px;
       background: #00bfa5;
@@ -76,16 +87,20 @@
       cursor: pointer;
       width: 100%;
     }
+
     button:hover {
       background: #009e88;
     }
   </style>
 </head>
+
 <body>
   <div class="survey-container">
     <div class="icon">🌍</div>
     <h1 id="title">TripUnity User Survey</h1>
-    <form id="survey-form" method="POST" action="https://script.google.com/macros/s/AKfycbyFb_Am82xtosYEA7e9aUomaddFNcLxYlCWUSXugdBPyWD5pL1qykCpfAeOD86Fdeke/exec">
+    <form id="survey-form" method="POST"
+      action="https://script.google.com/macros/s/AKfycbyFb_Am82xtosYEA7e9aUomaddFNcLxYlCWUSXugdBPyWD5pL1qykCpfAeOD86Fdeke/exec"
+      target="hidden_iframe" onsubmit="formSubmitted()">
       <label id="langLabel" for="language">Select your preferred language</label>
       <select id="language" name="language" required>
         <option value="en">English</option>
@@ -137,7 +152,8 @@
       </div>
 
       <label for="experience" id="experienceLabel">Any suggestions or experiences you'd like to share?</label>
-      <textarea id="experience" name="experience" rows="4" placeholder="Tell us what you want in a travel app..."></textarea>
+      <textarea id="experience" name="experience" rows="4"
+        placeholder="Tell us what you want in a travel app..."></textarea>
 
       <button type="submit" id="submitBtn">Submit</button>
     </form>
@@ -210,6 +226,11 @@
       });
     });
 
+    function formSubmitted() {
+      alert("🎉 Your response has been submitted successfully!");
+      document.getElementById("survey-form").reset(); // Optional: Reset form
+    }
+
     // Google Sheet integration (replace YOUR_SCRIPT_ID)
     // const form = document.getElementById('survey-form');
     // form.addEventListener('submit', (e) => {
@@ -228,4 +249,5 @@
     // });
   </script>
 </body>
+
 </html>
