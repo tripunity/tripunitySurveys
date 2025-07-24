@@ -3,208 +3,228 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TripUnity Feedback Survey</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <title>TripUnity Survey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+      padding: 20px;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f8f9fa, #e8f0fe);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #333;
     }
-
-    .container {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 16px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+    .survey-container {
+      max-width: 750px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      padding: 30px;
+      margin: auto;
     }
-
-    h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
+    h1 {
       text-align: center;
-      color: #2c3e50;
+      font-size: 26px;
     }
-
+    .icon {
+      font-size: 48px;
+      text-align: center;
+      color: #00bfa5;
+      margin-bottom: 10px;
+    }
     label {
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-top: 1rem;
+      font-weight: 600;
       display: block;
+      margin-top: 20px;
     }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
+    input[type="text"],
+    input[type="email"],
+    select,
     textarea {
-      resize: vertical;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    button {
-      background: #1d72b8;
-      color: white;
-      padding: 12px 20px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
       width: 100%;
-      margin-top: 1rem;
-      transition: background 0.3s ease;
+      padding: 12px 14px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
     }
-
-    button:hover {
-      background: #145a91;
+    .options {
+      margin-top: 10px;
     }
-
-    .language-selector {
-      text-align: center;
-    }
-
-    .language-selector button {
-      margin: 0.5rem;
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
-    }
-
-    .hidden {
+    .options input[type="radio"] {
       display: none;
     }
-
-    .fade {
-      animation: fadeIn 0.5s ease-in;
+    .options label {
+      display: block;
+      background: #f0f4f8;
+      margin: 6px 0;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid transparent;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .options input[type="radio"]:checked + label {
+      background: #d0f0e9;
+      border-color: #00bfa5;
+    }
+    button {
+      margin-top: 30px;
+      background: #00bfa5;
+      color: white;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #009e88;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="languageScreen" class="fade">
-      <h2>Choose Language<br/>भाषा चुनें<br/>Bhasha Chunein</h2>
-      <div class="language-selector">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('hi')">हिंदी</button>
-        <button onclick="setLanguage('hinglish')">Hinglish</button>
-      </div>
-    </div>
+  <div class="survey-container">
+    <div class="icon">🌍</div>
+    <h1 id="title">TripUnity User Survey</h1>
+    <form id="survey-form">
+      <label id="langLabel" for="language">Select your preferred language</label>
+      <select id="language" name="language" required>
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+      </select>
 
-    <form id="surveyForm" class="hidden fade">
-      <h2 id="formTitle">TripUnity Survey</h2>
+      <label for="name" id="nameLabel">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-      <div class="form-group">
-        <label id="q1Label"></label>
-        <select name="q1" required>
-          <option value="">Select</option>
-          <option value="Yes">Yes / हां / Haan</option>
-          <option value="No">No / नहीं / Nahi</option>
-        </select>
-      </div>
+      <label for="email" id="emailLabel">Email</label>
+      <input type="email" id="email" name="email" placeholder="example@example.com" required>
 
-      <div class="form-group">
-        <label id="q2Label"></label>
-        <select name="q2" required>
-          <option value="">Select</option>
-          <option value="Planning with friends is chaotic">Planning with friends is chaotic / दोस्तों के साथ प्लानिंग मुश्किल है</option>
-          <option value="Hard to track payments and bookings">Hard to track payments / बुकिंग और खर्चा समझना मुश्किल</option>
-          <option value="Forget important things while planning">We forget things / चीज़ें भूल जाते हैं प्लानिंग में</option>
-          <option value="Other">Other / अन्य</option>
-        </select>
+      <label id="groupIssueLabel">Do you face problems in planning group trips?</label>
+      <div class="options">
+        <input type="radio" id="groupIssueYes" name="groupIssue" value="Yes" required>
+        <label for="groupIssueYes" id="groupIssueYesLabel">Yes</label>
+        <input type="radio" id="groupIssueNo" name="groupIssue" value="No">
+        <label for="groupIssueNo" id="groupIssueNoLabel">No</label>
       </div>
 
-      <div class="form-group">
-        <label id="q3Label"></label>
-        <textarea name="q3" rows="4" placeholder="Your opinion here..."></textarea>
+      <label id="painPointLabel">What’s the biggest pain point for you?</label>
+      <div class="options">
+        <input type="radio" id="problem1" name="painPoint" value="Payment issues" required>
+        <label for="problem1" id="problem1Label">Payment split</label>
+        <input type="radio" id="problem2" name="painPoint" value="Itinerary confusion">
+        <label for="problem2" id="problem2Label">Planning and sharing itinerary</label>
+        <input type="radio" id="problem3" name="painPoint" value="Vendor issues">
+        <label for="problem3" id="problem3Label">Booking hotels/cabs</label>
+        <input type="radio" id="problem4" name="painPoint" value="Document issues">
+        <label for="problem4" id="problem4Label">Sharing travel documents</label>
+        <input type="radio" id="problem5" name="painPoint" value="Other">
+        <label for="problem5" id="problem5Label">Other</label>
       </div>
 
-      <div class="form-group">
-        <label id="emailLabel">(Optional) Your Email / ईमेल</label>
-        <input type="email" name="email" placeholder="you@example.com" />
+      <label id="conflictLabel">Have you ever had arguments in a group trip because of such issues?</label>
+      <div class="options">
+        <input type="radio" id="conflictYes" name="conflict" value="Yes" required>
+        <label for="conflictYes" id="conflictYesLabel">Yes</label>
+        <input type="radio" id="conflictNo" name="conflict" value="No">
+        <label for="conflictNo" id="conflictNoLabel">No</label>
       </div>
 
-      <div class="form-group">
-        <label id="nameLabel">(Optional) Your Name / नाम</label>
-        <input type="text" name="name" placeholder="Your Name / नाम" />
+      <label id="useAppLabel">Would you use an app that solves all these problems?</label>
+      <div class="options">
+        <input type="radio" id="useYes" name="useApp" value="Yes" required>
+        <label for="useYes" id="useYesLabel">Yes</label>
+        <input type="radio" id="useNo" name="useApp" value="No">
+        <label for="useNo" id="useNoLabel">No</label>
       </div>
 
-      <button type="submit" id="submitBtn">Submit / सबमिट करें</button>
+      <label for="experience" id="experienceLabel">Any suggestions or experiences you'd like to share?</label>
+      <textarea id="experience" name="experience" rows="4" placeholder="Tell us what you want in a travel app..."></textarea>
+
+      <button type="submit" id="submitBtn">Submit</button>
     </form>
   </div>
 
   <script>
-    const langTexts = {
+    const translations = {
       en: {
-        title: "TripUnity Survey",
-        q1: "Do you often face difficulties while planning group trips?",
-        q2: "What is the biggest problem you face during group planning?",
-        q3: "Any additional suggestion or idea you want to share?"
+        title: "TripUnity User Survey",
+        langLabel: "Select your preferred language",
+        nameLabel: "Your Name",
+        emailLabel: "Email",
+        groupIssueLabel: "Do you face problems in planning group trips?",
+        groupIssueYesLabel: "Yes",
+        groupIssueNoLabel: "No",
+        painPointLabel: "What’s the biggest pain point for you?",
+        problem1Label: "Payment split",
+        problem2Label: "Planning and sharing itinerary",
+        problem3Label: "Booking hotels/cabs",
+        problem4Label: "Sharing travel documents",
+        problem5Label: "Other",
+        conflictLabel: "Have you ever had arguments in a group trip because of such issues?",
+        conflictYesLabel: "Yes",
+        conflictNoLabel: "No",
+        useAppLabel: "Would you use an app that solves all these problems?",
+        useYesLabel: "Yes",
+        useNoLabel: "No",
+        experienceLabel: "Any suggestions or experiences you'd like to share?",
+        submitBtn: "Submit"
       },
       hi: {
-        title: "TripUnity सर्वे",
-        q1: "क्या आपको ग्रुप ट्रिप प्लान करने में दिक्कत होती है?",
-        q2: "ग्रुप प्लानिंग के दौरान आपकी सबसे बड़ी समस्या क्या होती है?",
-        q3: "कोई और सुझाव या विचार जो आप साझा करना चाहते हैं?"
-      },
-      hinglish: {
-        title: "TripUnity Survey",
-        q1: "Kya aapko group trip plan karne me dikkat hoti hai?",
-        q2: "Group planning me sabse badi dikkat kya lagti hai?",
-        q3: "Koi extra suggestion ya idea jo aap batana chahein?"
+        title: "TripUnity यूजर सर्वे",
+        langLabel: "अपनी पसंदीदा भाषा चुनें",
+        nameLabel: "आपका नाम",
+        emailLabel: "ईमेल",
+        groupIssueLabel: "क्या आपको ग्रुप ट्रिप प्लानिंग में दिक्कत होती है?",
+        groupIssueYesLabel: "हाँ",
+        groupIssueNoLabel: "नहीं",
+        painPointLabel: "आपको सबसे बड़ी समस्या क्या लगती है?",
+        problem1Label: "पैसे का हिसाब/स्प्लिट पेमेंट",
+        problem2Label: "प्लान बनाना और शेयर करना",
+        problem3Label: "होटल, कैब आदि से बात करना",
+        problem4Label: "टिकट और डॉक्यूमेंट शेयर करना",
+        problem5Label: "अन्य",
+        conflictLabel: "क्या आपने कभी ग्रुप ट्रिप में इन दिक्कतों के कारण झगड़ा झेला है?",
+        conflictYesLabel: "हाँ",
+        conflictNoLabel: "नहीं",
+        useAppLabel: "अगर कोई ऐसा ऐप हो जो इन सब चीज़ों को आसानी से मैनेज कर सके, तो क्या आप उसे इस्तेमाल करना चाहेंगे?",
+        useYesLabel: "हाँ",
+        useNoLabel: "नहीं",
+        experienceLabel: "अगर आप कुछ अनुभव या सुझाव साझा करना चाहें तो:",
+        submitBtn: "सबमिट करें"
       }
     };
 
-    function setLanguage(lang) {
-      const t = langTexts[lang];
-      document.getElementById("formTitle").textContent = t.title;
-      document.getElementById("q1Label").textContent = t.q1;
-      document.getElementById("q2Label").textContent = t.q2;
-      document.getElementById("q3Label").textContent = t.q3;
+    const langSelector = document.getElementById('language');
+    const labels = [
+      "title", "langLabel", "nameLabel", "emailLabel", "groupIssueLabel",
+      "groupIssueYesLabel", "groupIssueNoLabel", "painPointLabel", "problem1Label",
+      "problem2Label", "problem3Label", "problem4Label", "problem5Label",
+      "conflictLabel", "conflictYesLabel", "conflictNoLabel",
+      "useAppLabel", "useYesLabel", "useNoLabel", "experienceLabel", "submitBtn"
+    ];
 
-      document.getElementById("languageScreen").classList.add("hidden");
-      document.getElementById("surveyForm").classList.remove("hidden");
-    }
-
-    document.getElementById("surveyForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData.entries());
-
-      fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+    langSelector.addEventListener("change", () => {
+      const selectedLang = langSelector.value;
+      labels.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = translations[selectedLang][id];
       });
+    });
 
-      alert("Thanks for your feedback!");
-      this.reset();
+    // Google Sheet integration (replace YOUR_SCRIPT_ID)
+    const form = document.getElementById('survey-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      let excelLink = 'https://script.google.com/macros/s/AKfycbyFb_Am82xtosYEA7e9aUomaddFNcLxYlCWUSXugdBPyWD5pL1qykCpfAeOD86Fdeke/exec'; // Replace with your Google Apps Script URL
+      fetch(excelLink, {
+        method: 'POST',
+        body: data
+      }).then(() => {
+        alert("Form submitted successfully!");
+        form.reset();
+      }).catch(() => {
+        alert("Something went wrong.");
+      });
     });
   </script>
 </body>
