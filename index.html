@@ -85,7 +85,7 @@
   <div class="survey-container">
     <div class="icon">🌍</div>
     <h1 id="title">TripUnity User Survey</h1>
-    <form id="survey-form">
+    <form id="survey-form" method="POST" action="https://script.google.com/macros/s/AKfycbyFb_Am82xtosYEA7e9aUomaddFNcLxYlCWUSXugdBPyWD5pL1qykCpfAeOD86Fdeke/exec">
       <label id="langLabel" for="language">Select your preferred language</label>
       <select id="language" name="language" required>
         <option value="en">English</option>
@@ -211,21 +211,21 @@
     });
 
     // Google Sheet integration (replace YOUR_SCRIPT_ID)
-    const form = document.getElementById('survey-form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      let excelLink = 'https://script.google.com/macros/s/AKfycbyFb_Am82xtosYEA7e9aUomaddFNcLxYlCWUSXugdBPyWD5pL1qykCpfAeOD86Fdeke/exec'; // Replace with your Google Apps Script URL
-      fetch(excelLink, {
-        method: 'POST',
-        body: data
-      }).then(() => {
-        alert("Form submitted successfully!");
-        form.reset();
-      }).catch(() => {
-        alert("Something went wrong.");
-      });
-    });
+    // const form = document.getElementById('survey-form');
+    // form.addEventListener('submit', (e) => {
+    //   e.preventDefault();
+    //   const data = new FormData(form);
+    //   let excelLink = 'https://script.google.com/macros/s/AKfycbyFb_Am82xtosYEA7e9aUomaddFNcLxYlCWUSXugdBPyWD5pL1qykCpfAeOD86Fdeke/exec'; // Replace with your Google Apps Script URL
+    //   fetch(excelLink, {
+    //     method: 'POST',
+    //     body: data
+    //   }).then(() => {
+    //     alert("Form submitted successfully!");
+    //     form.reset();
+    //   }).catch(() => {
+    //     alert("Something went wrong.");
+    //   });
+    // });
   </script>
 </body>
 </html>
